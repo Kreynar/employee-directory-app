@@ -1,0 +1,10 @@
+.header {
+  display: flex;
+  border: 1px solid black;
+  height: 25px;
+
+  .header-title {
+    margin: auto;
+    font-weight: bold;
+  }
+}

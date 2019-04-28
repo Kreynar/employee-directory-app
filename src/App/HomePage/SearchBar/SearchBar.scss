@@ -1,0 +1,12 @@
+.search-bar {
+  display: flex;
+  border: 1px solid black;
+  height: 25px;
+
+  input {
+    flex: 1;
+    min-width: 10px;
+    border: none;
+    text-align: center;
+  }
+}
