@@ -1,0 +1,26 @@
+.employee-card-item {
+  border: 1px solid gray;
+  padding: 10px 0 10px 10px;
+  display: flex;
+  flex-direction: row;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  .employee-card-item-body {
+    .employee-card-item-body-header {
+      font-weight: bold;
+    }
+
+    .employee-card-item-body-info {
+      color: gray;
+    }
+  }
+
+  .employee-card-item-arrow {
+    width: 30px;
+    height: 30px;
+    margin: auto 0 auto auto;
+  }
+}

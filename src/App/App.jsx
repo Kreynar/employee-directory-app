@@ -4,12 +4,23 @@ import { connect } from "react-redux";
 import "./App.scss";
 import HomePage from "./HomePage/HomePage";
 import EmployeePage from "./EmployeePage/EmployeePage";
+import { createActionCloseEmployeeTab } from "store/actions";
 
-const App = ({ employeeInPage1, employeeInPage2 }) => (
+const App = ({ employeeInPage1, employeeInPage2, closeEmployeeTab }) => (
   <div className="App">
     <HomePage />
-    {employeeInPage1 ? <EmployeePage employee={employeeInPage1} /> : null}
-    {employeeInPage2 ? <EmployeePage employee={employeeInPage2} /> : null}
+    {employeeInPage1 ? (
+      <EmployeePage
+        employee={employeeInPage1}
+        onCloseClick={() => closeEmployeeTab(employeeInPage1.id)}
+      />
+    ) : null}
+    {employeeInPage2 ? (
+      <EmployeePage
+        employee={employeeInPage2}
+        onCloseClick={() => closeEmployeeTab(employeeInPage2.id)}
+      />
+    ) : null}
   </div>
 );
 
@@ -22,4 +33,12 @@ const mapStateToProps = state => ({
   )
 });
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => ({
+  closeEmployeeTab: idOfEmployee =>
+    dispatch(createActionCloseEmployeeTab(idOfEmployee))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
