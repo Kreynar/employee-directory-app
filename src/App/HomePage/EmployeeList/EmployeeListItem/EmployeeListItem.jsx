@@ -4,9 +4,9 @@ import "./EmployeeListItem.scss";
 
 export default class EmployeeListItem extends React.Component {
   render() {
-    const { iconPath, firstName, lastName, title } = this.props;
+    const { onClick, iconPath, firstName, lastName, title } = this.props;
     return (
-      <div className="employee-list-item">
+      <div onClick={onClick} className="employee-list-item">
         <img src={iconPath} alt="icon" />
         <div className="employee-list-item-info">
           <div className="employee-list-item-fullname">

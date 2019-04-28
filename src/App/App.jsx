@@ -15,10 +15,10 @@ const App = ({ employeeInPage1, employeeInPage2 }) => (
 
 const mapStateToProps = state => ({
   employeeInPage1: state.employees.find(
-    employee => employee.id === state.employeeIdInPage1
+    employee => employee.id === state.idOfEmployeeInPage1
   ),
   employeeInPage2: state.employees.find(
-    employee => employee.id === state.employeeIdInPage2
+    employee => employee.id === state.idOfEmployeeInPage2
   )
 });
 

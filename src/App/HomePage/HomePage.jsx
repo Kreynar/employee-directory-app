@@ -5,6 +5,7 @@ import "./HomePage.scss";
 import Header from "../Header/Header";
 import SearchBar from "./SearchBar/SearchBar";
 import EmployeeList from "./EmployeeList/EmployeeList";
+import { createActionOpenEmployeeTab } from "store/actions";
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -31,14 +32,14 @@ class HomePage extends React.Component {
   };
 
   render() {
-    const { onEmployeeClick } = this.props;
+    const { openEmployeeTab } = this.props;
     return (
       <div className="home-page">
         <Header title="Employee Directory" />
         <SearchBar placeholder="Search..." onInput={this.setSearchPhrase} />
         <EmployeeList
           employees={this.getFilteredEmployees()}
-          onEmployeeClick={onEmployeeClick}
+          onEmployeeClick={openEmployeeTab}
         />
       </div>
     );
@@ -49,4 +50,12 @@ const mapStateToProps = state => ({
   employees: state.employees
 });
 
-export default connect(mapStateToProps)(HomePage);
+const mapDispatchToProps = dispatch => ({
+  openEmployeeTab: idOfEmployee =>
+    dispatch(createActionOpenEmployeeTab(idOfEmployee))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HomePage);
