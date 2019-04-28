@@ -7,16 +7,39 @@ import SearchBar from "./SearchBar/SearchBar";
 import EmployeeList from "./EmployeeList/EmployeeList";
 
 class HomePage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchPhrase: ""
+    };
+  }
+
+  setSearchPhrase = searchPhrase => {
+    this.setState({ searchPhrase });
+  };
+
+  getFilteredEmployees = () => {
+    const searchPhrase = this.state.searchPhrase.trim().toLowerCase();
+    if (searchPhrase) {
+      return this.props.employees.filter(employee =>
+        `${employee.firstName.toLowerCase()} ${employee.lastName.toLowerCase()}`.includes(
+          searchPhrase
+        )
+      );
+    }
+    return this.props.employees;
+  };
+
   render() {
-    const { employees, onEmployeeClick } = this.props;
+    const { onEmployeeClick } = this.props;
     return (
       <div className="home-page">
         <Header title="Employee Directory" />
-        <SearchBar
-          placeholder="Search for employee..."
-          onInput={this.filterEmployees}
+        <SearchBar placeholder="Search..." onInput={this.setSearchPhrase} />
+        <EmployeeList
+          employees={this.getFilteredEmployees()}
+          onEmployeeClick={onEmployeeClick}
         />
-        <EmployeeList employees={employees} onEmployeeClick={onEmployeeClick} />
       </div>
     );
   }
