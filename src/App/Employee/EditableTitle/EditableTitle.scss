@@ -1,0 +1,16 @@
+.employee-title-input {
+  color: darkgray;
+  font-size: 0.8em;
+  border: none;
+  background: transparent;
+  min-width: 10px;
+  max-width: 140px;
+}
+
+.employee-title-save,
+.employee-title-cancel,
+.employee-title-edit {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}

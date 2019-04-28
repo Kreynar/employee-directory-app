@@ -12,7 +12,7 @@ export const createActionCloseEmployeeTab = idOfEmployee => ({
   payload: idOfEmployee
 });
 
-export const createActionChangeTitle = title => ({
+export const createActionChangeEmployeeTitle = (id, title) => ({
   type: CHANGE_TITLE,
-  payload: title
+  payload: { id, title }
 });

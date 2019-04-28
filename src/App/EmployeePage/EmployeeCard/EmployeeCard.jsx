@@ -1,24 +1,27 @@
 import React from "react";
+import { connect } from "react-redux";
 
 import "./EmployeeCard.scss";
 import EmployeeCardItem from "./EmployeeCardItem/EmployeeCardItem";
 import Employee from "App/Employee/Employee";
+import { createActionChangeEmployeeTitle } from "store/actions";
 
 const iconsPath = process.env.PUBLIC_URL + "/assets/";
 
-export default class EmployeeCard extends React.Component {
+class EmployeeCard extends React.Component {
   render() {
-    const { employee } = this.props;
+    const { employee, changeEmployeeTitle } = this.props;
     return (
       <div className="employee-card">
         <div className="employee-card-header">
           <Employee
             iconPath={iconsPath + employee.pic}
             iconSize="big"
+            id={employee.id}
             firstName={employee.firstName}
             lastName={employee.lastName}
             title={employee.title}
-            isTitleE
+            onTitleUpdate={title => changeEmployeeTitle(employee.id, title)}
           />
         </div>
         <EmployeeCardItem header="Call Office" info={employee.officePhone} />
@@ -29,3 +32,13 @@ export default class EmployeeCard extends React.Component {
     );
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  changeEmployeeTitle: (id, title) =>
+    dispatch(createActionChangeEmployeeTitle(id, title))
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(EmployeeCard);
